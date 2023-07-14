@@ -7,19 +7,92 @@ las operaciones CRUD para una base de datos h2.
 
 Aquí se muestra el diagrama de entidad-relación que representa la estructura de la base de datos utilizada en el proyecto.
 
-![Diagrama de entidad-relación](/ruta/al/diagrama-entidad-relacion.png)
+    +---------------------+         
+    |      Equipment      |         
+    +---------------------+         
+    | - id: Long          |         
+    | - serialNumber: String |      
+    | - name: String      |
+    | - description: String |
+    | - purchaseDate: Date |
+    | - purchaseValue: Double|
+    | - depreciationPurchaseValue: Double |
+    +---------------------+
 
 ## Diagrama de clases
 
 A continuación se presenta el diagrama de clases que ilustra la estructura y las relaciones entre las clases del proyecto.
 
-![Diagrama de clases](/ruta/al/diagrama-clases.png)
+       +----------------------+
+       |      Equipment       |
+       +----------------------+
+       | - id: Long           |
+       | - serialNumber: String |
+       | - name: String       |
+       | - description: String|
+       | - purchaseDate: Date |
+       | - purchaseValue: Double|
+       | - depreciationPurchaseValue: Double |
+       +----------------------+
+       | + getAllEquipments(): List<Equipment> |
+       | + getEquipmentForSerialNumber(serialNumber: String): Equipment |
+       | + addEquipment(equipment: Equipment): Equipment |
+       | + updateEquipment(serialNumber: String, equipment: Equipment): Equipment |
+       | + deleteEquipment(serialNumber: String): boolean |
+       +----------------------+
+
+      EquipmentRepository                  ParameterRepository
+      +-----------------+                  +------------------+
+      | - findAll(): List<Equipment>        | ...              |
+      | - findBySerialNumber(serialNumber: String): Optional<Equipment> |
+      | - save(equipment: Equipment): Equipment |
+      | - delete(equipment: Equipment): void |
+      +-----------------+                  +------------------+
+
+      CalculateDepreciation
+      +-----------------+
+      | - calculateDepreciation(purchaseValue: Double, purchaseDate: Date, parameterRepository: ParameterRepository): Double |
+      +-----------------+
+
+      EquipmentController
+      +-----------------+
+      | + getAllEquipments(): List<Equipment> |
+      | + getEquipmentForSerialNumber(serialNumber: String): ResponseEntity<Object> |
+      | + addEquipment(equipment: Equipment): ResponseEntity<Equipment> |
+      | + updateEquipment(serialNumber: String, equipment: Equipment): ResponseEntity<Equipment> |
+      | + deleteEquipment(serialNumber: String): ResponseEntity<String> |
+      +-----------------+
+
+      CustomResponseEntityExceptionHandler
+      +-----------------+
+      | + handleNoSuchElementException(ex: NoSuchElementException): ResponseEntity<Object> |
+      +-----------------+
 
 ## Diagrama de componentes
 
 El siguiente diagrama de componentes muestra la arquitectura general del sistema y los componentes principales involucrados.
 
-![Diagrama de componentes](/ruta/al/diagrama-componentes.png)
++------------------------+                       +-------------------------+
+|      Usuario           |                       |      Controlador         |
++------------------------+                       +-------------------------+
+|                        |                       |                         |
+|  agregarEquipo()       |                       |                         |
+|----------------------->|                       |                         |
+|                        |                       |                         |
+|                        |                       |  addEquipment()         |
+|                        |                       |------------------------>|
+|                        |                       |                         |
+|                        |                       |  createEquipment()      |
+|                        |                       |------------------------>|
+|                        |                       |                         |
+|                        |                       |  saveEquipment()        |
+|                        |                       |------------------------>|
+|                        |                       |                         |
+|                        |                       |                         |
+|                        |                       |    Respuesta            |
+|                        |                       |<------------------------|
+|                        |                       |                         |
++------------------------+                       +-------------------------+
 
 ## Requisitos previos
 
