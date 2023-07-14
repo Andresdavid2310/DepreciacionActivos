@@ -38,14 +38,15 @@ El siguiente diagrama de componentes muestra la arquitectura general del sistema
 
 Una vez tengas ejecutando el proyecto puedes ver la documentación y la base de datos.
 
-1.Use Swagger UI to test the endpoints. URL = http://localhost:8080/swagger-ui/#/equipment-controller
-2.Use H2 Console to access the database. URL = http://localhost:8080/h2-console/login.do?jsessionid=bc40b0139981e906e3e95d2871e2457d
-el ingreso a la bd es con el usuario:localhost y contraseña: localhost
-3.Ejecuta la consulta
-INSERT INTO parameters (name, value_parameter) VALUES('percentajeDepreciation', '0.04');
-4.Puedes Empezar a probar los enpoints del CRUD por acá la colección de postman con la información :
+1.Use Swagger UI to test the endpoints. URL = http://localhost:8080/swagger-ui/#/equipment-controller <BR>
+2.Use H2 Console to access the database. URL = http://localhost:8080/h2-console/login.do?jsessionid=bc40b0139981e906e3e95d2871e2457d <BR>
+el ingreso a la bd es con el usuario:localhost y contraseña: localhost <BR>
+3.Ejecuta la consulta <BR>
+INSERT INTO parameters (name, value_parameter) VALUES('percentajeDepreciation', '0.04'); <BR>
+4.Puedes Empezar a probar los enpoints del CRUD por acá la colección de postman con la información : <BR>
 https://api.postman.com/collections/11985200-a20f58af-453d-4de1-8e46-ee7fff3d6ab3?access_key=PMAT-01H5B7DBPFEAR5BZRZ91EC04T0
 
 ## Contacto
 
-Amdrés Benavides
+ANdrés Benavides
+Email: dandavi2310@hotmail.com
