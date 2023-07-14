@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.List;
+import java.time.LocalDate;
 
 @Entity
 @Getter
@@ -14,7 +14,7 @@ public class Equipment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "serialNumber", nullable = false)
+    @Column(name = "serialNumber", nullable = false, updatable = false, unique = true)
     private String serialNumber;
 
     @Column(name = "description", nullable = false)
@@ -23,12 +23,19 @@ public class Equipment {
     @Column(name = "name", nullable = false)
     private String name;
 
-    @Column(name = "purchaseDate", nullable = false)
-    private String purchaseDate;
+    @Column(name = "purchaseDate", nullable = false , updatable = false)
+    private LocalDate purchaseDate;
 
     @Column(name = "purchaseValue", nullable = false)
     private Double purchaseValue;
 
-    @OneToMany(mappedBy = "equipment", cascade = CascadeType.ALL)
-    private List<Depreciation> depreciations;
+   @Column(name = "depreciationPurchasePValue")
+    private Double depreciationPurchaseValue;
+
+    public Equipment(long l, String s, String s1, String s2, String date, double v) {
+    }
+
+    public Equipment() {
+
+    }
 }

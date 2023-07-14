@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@Entity
+@Entity(name = "Depreciation")
 @Getter
 @Setter
 public class Depreciation {
@@ -13,13 +13,13 @@ public class Depreciation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private int year;
+    private int yearValue;
 
     private String name;
 
     private double depreciation;
 
-    @ManyToOne
-    @JoinColumn(name = "equipment_id")
-    private Equipment equipment;
+    /*@ManyToOne
+    @JoinColumn(name = "Equipment_id")
+    private Equipment equipment;*/
 }
