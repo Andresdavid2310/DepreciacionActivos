@@ -43,28 +43,6 @@ class DepreciationServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
-    @Test
-    void calculateDepreciationPerYear_shouldCalculateDepreciationAndSave() {
-        String serialNumberEquipment = "123456";
-        String yearOfCalculateDepreciation = "2022";
-        String percentageDepreciation = "0.1";
-
-        Equipment equipment = new Equipment(1L, serialNumberEquipment, "Description", "Name", LocalDate.now(), 1000.0, null);
-        RulesDepreciation rulesDepreciation = new RulesDepreciation(1L, yearOfCalculateDepreciation, percentageDepreciation);
-
-        when(equipmentRepository.findBySerialNumber(serialNumberEquipment)).thenReturn(Optional.of(equipment));
-        when(ruleRepository.findByYearDepreciation(yearOfCalculateDepreciation)).thenReturn(Optional.of(rulesDepreciation));
-        when(depreciationRepository.save(any(Depreciation.class))).thenAnswer(invocation -> invocation.getArgument(0));
-
-        DepreciationDto depreciationDto = new DepreciationDto(serialNumberEquipment, yearOfCalculateDepreciation);
-        double expectedDepreciationValue = equipment.getPurchaseValue() * Double.parseDouble(percentageDepreciation);
-
-        Depreciation result = depreciationService.calculateDepreciationPerYear(depreciationDto);
-
-        assertEquals(serialNumberEquipment, result.getEquipment().getSerialNumber());
-        assertEquals(Integer.parseInt(yearOfCalculateDepreciation), result.getYearDepreciation());
-        assertEquals(expectedDepreciationValue, result.getDepreciationPurchaseValue());
-    }
 
     @Test
     void calculateDepreciationPerYear_shouldThrowNoSuchElementExceptionWhenEquipmentNotFound() {

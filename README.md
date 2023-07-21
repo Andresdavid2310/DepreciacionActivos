@@ -3,7 +3,9 @@
 Ests proyecto es creado con el fin de calcular la depreciación de los activos registrados en un sistema , permite hacer
 las operaciones CRUD para una base de datos h2.
 
-## Diagrama de entidad-relación
+![## Diagrama de entidad-relación](C:\Users\danda\IdeaProjects\Technical-test\images\diagrama%20entidad%20relacion.jpg)
+
+
 
 Aquí se muestra el diagrama de entidad-relación que representa la estructura de la base de datos utilizada en el proyecto.
 
