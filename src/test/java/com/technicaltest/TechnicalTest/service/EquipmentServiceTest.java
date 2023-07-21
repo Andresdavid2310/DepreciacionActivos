@@ -1,8 +1,7 @@
 package com.technicaltest.TechnicalTest.service;
 
-import com.technicaltest.TechnicalTest.entity.Equipment;
+import com.technicaltest.TechnicalTest.entity.entity.Equipment;
 import com.technicaltest.TechnicalTest.repository.EquipmentRepository;
-import com.technicaltest.TechnicalTest.repository.ParameterRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -23,9 +22,6 @@ class EquipmentServiceTest {
 
     @Mock
     private EquipmentRepository equipmentRepository;
-
-    @Mock
-    private ParameterRepository parameterRepository;
 
     @InjectMocks
     private EquipmentService equipmentService;

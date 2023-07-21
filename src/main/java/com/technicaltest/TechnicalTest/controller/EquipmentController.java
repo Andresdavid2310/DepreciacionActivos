@@ -1,7 +1,8 @@
 package com.technicaltest.TechnicalTest.controller;
 
-import com.technicaltest.TechnicalTest.entity.Equipment;
+import com.technicaltest.TechnicalTest.entity.entity.Equipment;
 import com.technicaltest.TechnicalTest.service.EquipmentService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/equipments")
-//@Api(tags = "Product API")
+@Api(tags = "Equipment controller for API")
 public class EquipmentController {
 
     @Autowired

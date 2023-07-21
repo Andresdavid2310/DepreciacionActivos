@@ -1,9 +1,7 @@
 package com.technicaltest.TechnicalTest.service;
 
-import com.technicaltest.TechnicalTest.entity.Equipment;
+import com.technicaltest.TechnicalTest.entity.entity.Equipment;
 import com.technicaltest.TechnicalTest.repository.EquipmentRepository;
-import com.technicaltest.TechnicalTest.repository.ParameterRepository;
-import com.technicaltest.TechnicalTest.util.CalculateDepreciation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,21 +14,17 @@ public class EquipmentService {
     @Autowired
     private EquipmentRepository equipmentRepository;
 
-    @Autowired
-    private ParameterRepository parameterRepository;
-
-
     public List<Equipment> getAllEquipments() {
         return equipmentRepository.findAll();
     }
 
     public Equipment getEquipmentForSerialNumber(String serialNumber) {
-        return equipmentRepository.findBySerialNumber(serialNumber)
+        Equipment equipment = equipmentRepository.findBySerialNumber(serialNumber)
                 .orElseThrow(() -> new NoSuchElementException("Equipo no encontrado"));
+        return  equipment;
     }
 
     public Equipment addEquipment(Equipment equipment) {
-        equipment.setDepreciationPurchaseValue(CalculateDepreciation.calculateDepreciation(equipment.getPurchaseValue(),equipment.getPurchaseDate(),parameterRepository));
         return equipmentRepository.save(equipment);
     }
 
@@ -40,10 +34,6 @@ public class EquipmentService {
         equipmentExists.setName(equipment.getName());
         equipmentExists.setPurchaseDate(equipment.getPurchaseDate());
         equipmentExists.setPurchaseValue(equipment.getPurchaseValue());
-        if(!equipmentExists.getPurchaseDate().equals(equipment.getPurchaseDate()) ||
-        !equipmentExists.getPurchaseValue().equals(equipment.getPurchaseValue())){
-            equipmentExists.setDepreciationPurchaseValue(CalculateDepreciation.calculateDepreciation(equipment.getPurchaseValue(),equipment.getPurchaseDate(),parameterRepository));
-        }
         return equipmentRepository.save(equipmentExists);
     }
 
@@ -52,4 +42,8 @@ public class EquipmentService {
         equipmentRepository.delete(equipoExistente);
         return true;
     }
+
+    /*public Optional<Equipment> getEquipmentWithDepreciationsBySerialNumber(String serialNumber) {
+        return equipmentRepository.findBySerialNumberAndDepreciation(serialNumber);
+    }*/
 }

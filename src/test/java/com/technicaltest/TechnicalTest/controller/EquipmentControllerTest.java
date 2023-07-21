@@ -1,6 +1,6 @@
 package com.technicaltest.TechnicalTest.controller;
 
-import com.technicaltest.TechnicalTest.entity.Equipment;
+import com.technicaltest.TechnicalTest.entity.entity.Equipment;
 import com.technicaltest.TechnicalTest.service.EquipmentService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +10,7 @@ import org.mockito.MockitoAnnotations;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,8 +31,8 @@ public class EquipmentControllerTest {
     public void setUp() {
         MockitoAnnotations.openMocks(this);
         mockEquipments = new ArrayList<>();
-        mockEquipments.add(new Equipment(1L, "Equipment 1", "Description 1", "Name 1", "2020-01-01", 3333.11));
-        mockEquipments.add(new Equipment(2l, "Equipment 2", "Description 2", "Name 2", "2019-2-2", 4444.55));
+        mockEquipments.add(new Equipment(1L, "Equipment 1", "Description 1", "Name 1", LocalDate.of(2019, 10, 23), 3333.11,null));
+        mockEquipments.add(new Equipment(2L, "Equipment 2", "Description 2", "Name 2", LocalDate.of(2018, 9, 04), 4444.55, null));
 
         when(equipmentService.getAllEquipments()).thenReturn(mockEquipments);
 
@@ -94,7 +95,7 @@ public class EquipmentControllerTest {
 
     @Test
     public void testAddEquipment() {
-        Equipment newEquipment = new Equipment(3L, "New Equipment", "New Description", "New Name", "2001-02-12", 222.33);
+        Equipment newEquipment = new Equipment(3L, "New Equipment", "New Description", "New Name", LocalDate.of(2020, 02, 10), 222.33, null);
 
         ResponseEntity<Equipment> response = equipmentController.addEquipment(newEquipment);
 

@@ -7,8 +7,11 @@ import springfox.documentation.oas.annotations.EnableOpenApi;
 
 @SpringBootApplication
 @EnableOpenApi
-@ComponentScan(basePackages = "com.technicaltest.TechnicalTest.exception.CustomResponseEntityExceptionHandler")
-@ComponentScan(basePackages = "com.technicaltest.TechnicalTest.controller")
+@ComponentScan(basePackages = {
+		"com.technicaltest.TechnicalTest.exception",
+		"com.technicaltest.TechnicalTest.controller",
+		"com.technicaltest.TechnicalTest.service"
+})
 public class TechnicalTestApplication {
 
 	public static void main(String[] args) {
