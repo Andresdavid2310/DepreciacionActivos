@@ -42,8 +42,4 @@ public class EquipmentService {
         equipmentRepository.delete(equipoExistente);
         return true;
     }
-
-    /*public Optional<Equipment> getEquipmentWithDepreciationsBySerialNumber(String serialNumber) {
-        return equipmentRepository.findBySerialNumberAndDepreciation(serialNumber);
-    }*/
 }

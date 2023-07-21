@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: technical-test-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: technical-test-app
+  template:
+    metadata:
+      labels:
+        app: technical-test-app
+    spec:
+      containers:
+        - name: technical-test-app
+          image: dandavi2310/technical-test-app:latest
+          ports:
+            - containerPort: 8080
